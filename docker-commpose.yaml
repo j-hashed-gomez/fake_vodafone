@@ -1,0 +1,13 @@
+services:
+  fakevodafone_remote:
+    container_name: fakevodafone_remote      # <-- Fijo
+    build: .
+    privileged: true
+    cap_add:
+      - NET_ADMIN
+    sysctls:
+      net.ipv4.ip_forward: 1
+    ports:
+      - "500:500/udp"
+      - "4500:4500/udp"
+    entrypoint: [ "/usr/local/sbin/entrypoint.sh" ]
